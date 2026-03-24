@@ -1,0 +1,7 @@
+- name: Setup a Server.
+  hosts: all
+  gather_facts: true
+  become: true
+
+  roles:
+   - server_setup

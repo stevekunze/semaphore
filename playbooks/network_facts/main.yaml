@@ -1,0 +1,20 @@
+---
+- name: Gather OS and network facts
+  hosts: all
+  gather_facts: true
+  become: true
+  tasks:
+    - name: Show Network Information.
+      ansible.builtin.debug:
+        msg:
+          - "the hostname is: {{ ansible_facts['hostname'] }}"
+          - "the os family is: {{ ansible_facts['os_family'] }}"
+          - "the distro is: {{ ansible_facts['distribution'] }}"
+          - "the distro version is: {{ ansible_facts['distribution_version'] }}"
+          - "the date is: {{ ansible_facts['date_time']['date'] }}"
+          - "the time is: {{ ansible_facts['date_time']['time'] }}"
+          - "the ip is: {{ ansible_facts['default_ipv4']['address'] }}"
+          - "the netmask is: {{ ansible_facts['default_ipv4']['netmask'] }}"
+          - "the gateway is: {{ ansible_facts['default_ipv4']['gateway'] }}"
+          # - "the dns server is: {{ ansible_facts['ansible_dns']['nameservers'] }}"
+          - "the mac-address is: {{ ansible_facts['default_ipv4']['macaddress'] }}"

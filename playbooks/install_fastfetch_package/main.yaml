@@ -1,0 +1,22 @@
+---
+- name: Install fastfetch
+  hosts: all
+  gather_facts: true
+
+  vars_files:
+    vars.yaml
+  pre_tasks:
+    - name: Update the System.
+      ansible.builtin.apt:
+        name: fastfetch
+        state: present
+        update_cache: true # apt update
+        cache_valid_time: 3600
+      become: true
+  tasks:
+    - name: Run fastfetch on bash startup.
+      ansible.builtin.lineinfile:
+        path: "/home/{{ user }}/.bashrc"
+        line: 'fastfetch'
+        state: present
+        insertafter: EOF

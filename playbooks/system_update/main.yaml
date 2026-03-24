@@ -1,0 +1,19 @@
+---
+- name: Setup a Debian Server
+  hosts: all
+  gather_facts: true
+  become: true
+
+  tasks:
+    - name: Update Debian using apt.
+      ansible.builtin.apt:
+        update_cache: true # apt update
+        cache_valid_time: 3600 # do apt update if it wasn't done within the last hour
+        upgrade: "full"
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Update Rocky using dnf.
+      ansible.builtin.dnf:
+        name: "*" # dnf -y update
+        state: latest
+      when: ansible_facts['os_family'] == "RedHat"

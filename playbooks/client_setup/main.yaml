@@ -1,0 +1,5 @@
+---
+- name: Setup Arch Based Linux Client.
+  hosts: localhost
+  gather_facts: false
+  become: true
