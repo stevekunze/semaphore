@@ -1,5 +1,32 @@
 ---
-- name: Setup Arch Based Linux Client.
+- name: Local Linux Clients and keep them in sync
   hosts: localhost
-  gather_facts: false
+  connection: local
+  gather_facts: true
   become: true
+
+  vars_files:
+   - vars.yaml
+
+  tasks:
+   - name: Run the equivalent of "pacman -Syu" as a separate step
+     community.general.pacman:
+      update_cache: true
+      upgrade: true
+     when: ansible_facts['os_family'] == "Archlinux"
+
+   - name: Install Packman packages
+     community.general.pacman:
+      name: "{{ pacman_packages }}"
+      state: present
+     when: ansible_facts['os_family'] == "Archlinux"
+
+   - name: Install Packman packages
+     community.general.pacman:
+      name:
+       - brave-bin
+       - librewolf-bin
+      state: present
+      executable: yay
+      extra_args: --builddir /var/cache/yay
+     when: ansible_facts['os_family'] == "Archlinux"

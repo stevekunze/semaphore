@@ -1,10 +1,30 @@
 ---
 # vars file for server_setup
-new_user: admind # replace with desired username
-pub_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAW48gnUerYKVZoQBWR7zmNYzbjqexUk7SHf/u88B6Uo stevekunze@protonmail.com" # replace with desired pubkey
-packages: # insert a list of packages here
+user: steve # replace with desired username
+pacman_packages: # insert a list of packages here
   - micro
-  - sudo
-  - htop
-  - unzip
   - fastfetch
+  - vscodium
+  - alacritty
+  - helix
+  - keepassxc
+  - obs-studio
+  - discord
+  - yt-dlp
+  - openssh-server
+  - id3v2
+  - yay
+  - obsidian
+  - nextcloud-client
+  - steam
+  - restic
+  - mc
+  - fzf
+  - zoxide
+  - exa
+  - starship
+  - libreoffice-still
+  - zsh
+yay_packages:
+  - brave-bin
+  - librewolf-bin
