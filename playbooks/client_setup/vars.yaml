@@ -1,5 +1,4 @@
 ---
-# vars file for server_setup
 user: steve # replace with desired username
 pacman_packages: # insert a list of packages here
   - micro
